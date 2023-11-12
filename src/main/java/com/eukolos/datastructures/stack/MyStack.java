@@ -1,5 +1,6 @@
 package com.eukolos.datastructures.stack;
 
+// generated with TDD pattern
 public class MyStack<T> {
     private int maxSize;
     private int top;

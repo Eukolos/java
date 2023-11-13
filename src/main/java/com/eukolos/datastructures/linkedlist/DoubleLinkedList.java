@@ -34,7 +34,19 @@ public class DoubleLinkedList {
         head = node;
     }
 
-
+    public void replace(int index, int value) {
+        Node node = head;
+        int counter = 0;
+        while (node != null) {
+            if (counter == index) {
+                node.setValue(value);
+                return;
+            }
+            node = node.getNext();
+            counter++;
+        }
+        throw new IndexOutOfBoundsException();
+    }
 
     public void remove() {
         if (head == null) {

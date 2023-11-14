@@ -155,7 +155,7 @@ public class Item9 {
             System.out.println("Ben hep çalışırım");
         }
 
-
+        // Always use try-with-resources in preference to try-finally when working with resources that must be closed.
 
     }
 

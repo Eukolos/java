@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DoubleLinkedListTest {
 
     @Test
-    public void testAdd() {
+    public void givenEmptyList_whenAddElements_thenElementsAreAppended() {
         DoubleLinkedList list = new DoubleLinkedList();
         list.add(1);
         list.add(2);
@@ -18,7 +18,7 @@ public class DoubleLinkedListTest {
     }
 
     @Test
-    public void testAddFirst() {
+    public void givenListWithElements_whenAddFirst_thenElementIsAddedAtBeginning() {
         DoubleLinkedList list = new DoubleLinkedList();
         list.add(1);
         list.addFirst(0);
@@ -28,7 +28,7 @@ public class DoubleLinkedListTest {
     }
 
     @Test
-    public void testAddLast() {
+    public void givenListWithElements_whenAddLast_thenElementIsAddedAtEnd() {
         DoubleLinkedList list = new DoubleLinkedList();
         list.add(1);
         list.addLast(2);
@@ -38,7 +38,7 @@ public class DoubleLinkedListTest {
     }
 
     @Test
-    public void testReplace() {
+    public void givenListWithElements_whenReplace_thenElementIsReplaced() {
         DoubleLinkedList list = new DoubleLinkedList();
         list.add(1);
         list.add(2);
@@ -52,7 +52,7 @@ public class DoubleLinkedListTest {
     }
 
     @Test
-    public void testRemove() {
+    public void givenListWithElements_whenRemove_thenLastElementIsRemoved() {
         DoubleLinkedList list = new DoubleLinkedList();
         list.add(1);
         list.add(2);
@@ -66,7 +66,7 @@ public class DoubleLinkedListTest {
     }
 
     @Test
-    public void testRemoveFirst() {
+    public void givenListWithElements_whenRemoveFirst_thenFirstElementIsRemoved() {
         DoubleLinkedList list = new DoubleLinkedList();
         list.add(1);
         list.add(2);
@@ -80,7 +80,7 @@ public class DoubleLinkedListTest {
     }
 
     @Test
-    public void testRemoveLast() {
+    public void givenListWithElements_whenRemoveLast_thenLastElementIsRemoved() {
         DoubleLinkedList list = new DoubleLinkedList();
         list.add(1);
         list.add(2);

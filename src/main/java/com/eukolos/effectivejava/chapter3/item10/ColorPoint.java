@@ -28,4 +28,8 @@ public class ColorPoint {
         return cp.point.equals(point) && cp.color.equals(color);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(point, color);
+    }
 }

@@ -22,6 +22,25 @@ public class MyHashMap<K, V> {
         }
 
         @Override
+        public boolean equals(Object obj) {
+            if (obj == null) {
+                return false;
+            }
+
+            if (!(obj instanceof Entry)) {
+                return false;
+            }
+
+            Entry<K, V> other = (Entry<K, V>) obj;
+            return this.key.equals(other.key);
+        }
+
+        @Override
+        public int hashCode() {
+            return key.hashCode();
+        }
+
+        @Override
         public String toString() {
             return key + "=" + value;
         }
@@ -50,7 +69,99 @@ public class MyHashMap<K, V> {
             current.next = entry;
         }
     }
+    public String get(K key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
 
+        int hash = hash(key);
+        int index = hash % DEFAULT_CAPACITY;
+
+        Entry<K, V> entry = table[index];
+
+        while (entry != null) {
+            if (entry.key.equals(key)) {
+                return entry.value.toString();
+            }
+            entry = entry.next;
+        }
+        return null;
+    }
+
+    public void remove(K key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
+        int hash = hash(key);
+        int index = hash % DEFAULT_CAPACITY;
+
+        Entry<K, V> entry = table[index];
+
+        if (entry.key.equals(key)) {
+            table[index] = entry.next;
+        } else {
+            Entry<K, V> previous = entry;
+            while (entry != null) {
+                if (entry.key.equals(key)) {
+                    previous.next = entry.next;
+                    return;
+                }
+                previous = entry;
+                entry = entry.next;
+            }
+        }
+    }
+
+    public boolean containsKey(K key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
+        int hash = hash(key);
+        int index = hash % DEFAULT_CAPACITY;
+
+        Entry<K, V> entry = table[index];
+
+        while (entry != null) {
+            if (entry.key.equals(key)) {
+                return true;
+            }
+            entry = entry.next;
+        }
+        return false;
+    }
+
+    public boolean containsValue(V value) {
+        if (value == null) {
+            throw new IllegalArgumentException("Value cannot be null");
+        }
+
+        for (Entry<K, V> entry : table) {
+            while (entry != null) {
+                if (entry.value.equals(value)) {
+                    return true;
+                }
+                entry = entry.next;
+            }
+        }
+        return false;
+    }
+
+    public int size() {
+        int size = 0;
+        for (Entry<K, V> entry : table) {
+            while (entry != null) {
+                size++;
+                entry = entry.next;
+            }
+        }
+        return size;
+    }
+
+
+
+    // its only for testing
     public List<Entry<K, V>> getAll() {
         List<Entry<K, V>> entries = new ArrayList<>();
         for (Entry<K, V> entry : table) {
@@ -64,9 +175,10 @@ public class MyHashMap<K, V> {
 
     public static void main(String[] args) {
         MyHashMap map = new MyHashMap();
-        map.put("a", 1);
-        map.put("b", 2);
-        map.put("c", 3);
+        map.put(1, 1);
+        map.put(1, 2);
+        map.put(2, 3);
+        System.out.println(map.get(1));
 
         System.out.println(map.getAll());
     }

@@ -1,6 +1,5 @@
 package com.eukolos.datastructures.linkedlist;
 
-
 public class DoubleLinkedList {
 
     private Node head;
@@ -18,10 +17,6 @@ public class DoubleLinkedList {
         tail = node;
     }
 
-    public void addLast(int value) {
-        add(value);
-    }
-
     public void addFirst(int value) {
         Node node = new Node(value);
         if (head == null) {
@@ -29,31 +24,29 @@ public class DoubleLinkedList {
             tail = node;
             return;
         }
-        node.setNext(head);
         head.setPrevious(node);
+        node.setNext(head);
         head = node;
     }
 
+    public void addLast(int value) {
+        add(value);
+    }
+
     public void replace(int index, int value) {
-        Node node = head;
-        int counter = 0;
-        while (node != null) {
-            if (counter == index) {
-                node.setValue(value);
-                return;
-            }
-            node = node.getNext();
-            counter++;
-        }
-        throw new IndexOutOfBoundsException();
+        validateIndex(index);
+        Node node = getNodeAtIndex(index);
+        node.setValue(value);
     }
 
     public void remove() {
         if (head == null) {
-            return;
+            throw new IllegalStateException("List is empty");
         }
         tail = tail.getPrevious();
-        tail.setNext(null);
+        if (tail != null) {
+            tail.setNext(null);
+        }
     }
 
     public void removeLast() {
@@ -62,26 +55,38 @@ public class DoubleLinkedList {
 
     public void removeFirst() {
         if (head == null) {
-            return;
+            throw new IllegalStateException("List is empty");
         }
         head = head.getNext();
-        head.setPrevious(null);
+        if (head != null) {
+            head.setPrevious(null);
+        }
     }
 
     public int get(int index) {
+        validateIndex(index);
+        Node node = getNodeAtIndex(index);
+        return node.getValue();
+    }
+
+    private void validateIndex(int index) {
+        if (index < 0) {
+            throw new IndexOutOfBoundsException("Index cannot be negative");
+        }
+    }
+
+    private Node getNodeAtIndex(int index) {
         Node node = head;
         int counter = 0;
         while (node != null) {
             if (counter == index) {
-                return node.getValue();
+                return node;
             }
             node = node.getNext();
             counter++;
         }
-        throw new IndexOutOfBoundsException();
+        throw new IndexOutOfBoundsException("Index out of bounds");
     }
-
-
 
     private static class Node {
         private int value;
@@ -116,6 +121,4 @@ public class DoubleLinkedList {
             this.previous = previous;
         }
     }
-
-
 }

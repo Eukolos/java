@@ -63,4 +63,18 @@ class MyStackTest {
         assertThat(myStack.pop()).isEqualTo("emin");
     }
 
+    @Test
+    void shouldWorkWhenUseCloneMethod() {
+        MyStack<String> myStack = new MyStack<>(3);
+        myStack.push("emin");
+        myStack.push("4");
+        myStack.push("98");
+
+        MyStack<String> clone = myStack.clone();
+
+        assertThat(clone.pop()).isEqualTo("98");
+        assertThat(clone.pop()).isEqualTo("4");
+        assertThat(clone.pop()).isEqualTo("emin");
+    }
+
 }

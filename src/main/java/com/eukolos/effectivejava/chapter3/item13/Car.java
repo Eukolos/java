@@ -1,10 +1,15 @@
 package com.eukolos.effectivejava.chapter3.item13;
 
-import lombok.SneakyThrows;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class Car implements Cloneable {
-    private final String brand;
-    private final String model;
-    private final int year;
+    private String brand;
+    private String model;
+    private int year;
 
     public Car(String brand, String model, int year) {
         this.brand = brand;
@@ -35,6 +40,8 @@ public class Car implements Cloneable {
     public Car clone() {
         try {
             Car clone = (Car) super.clone();
+            clone.setYear(this.year + 1);
+
             // TODO: copy mutable state here, so the clone can't change the internals of the original
             return clone;
         } catch (CloneNotSupportedException e) {

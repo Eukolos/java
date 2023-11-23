@@ -45,7 +45,7 @@ public class TestDrive {
 
 
 
-        SuperClassDerin scd = new SuperClassDerin() {
+        SuperClassDerin scd = new SuperClassDerin(){
             @Override
             public void yazBeni() {
                 // TODO Auto-generated method stub

@@ -6,8 +6,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class TestDrive {
-    @SuppressWarnings("unchecked")
+
     public static void main(String[] args) {
+        @SuppressWarnings("unchecked")
         Set<Lark> exaltation = new HashSet();
         exaltation.add(new Lark());
         exaltation.add(new Lark());

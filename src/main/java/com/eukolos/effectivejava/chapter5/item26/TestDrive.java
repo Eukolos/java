@@ -15,6 +15,8 @@ public class TestDrive {
         String isimAl = isimListesi.get(1);
 
         System.out.println(isimAl);
+
+
     }
 
 }

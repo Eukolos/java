@@ -28,7 +28,7 @@ public class StackTechTwo<E> {
         @SuppressWarnings("unchecked")
         E result = (E) elements[--size];
 
-        elements[size] = null; // Eliminate obsolete reference
+        elements[size] = null; // Eliminate obsolete reference for memory clean-up
         return result;
     }
 

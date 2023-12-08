@@ -88,6 +88,24 @@ public class DoubleLinkedList {
         throw new IndexOutOfBoundsException("Index out of bounds");
     }
 
+    public void reverse() {
+        Node temp = null;
+        Node current = head;
+
+        // Swap next and previous for all nodes of doubly linked list
+        while (current != null) {
+            temp = current.getPrevious();
+            current.setPrevious(current.getNext());
+            current.setNext(temp);
+            current = current.getPrevious();
+        }
+
+        // Before changing head, check for the cases like empty list and list with only one node
+        if (temp != null) {
+            head = temp.getPrevious();
+        }
+    }
+
     private static class Node {
         private int value;
         private Node next;

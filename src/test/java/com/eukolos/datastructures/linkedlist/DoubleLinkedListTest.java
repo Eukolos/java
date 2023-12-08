@@ -92,4 +92,18 @@ public class DoubleLinkedListTest {
         assertEquals(2, list.get(1));
         assertThrows(IndexOutOfBoundsException.class, () -> list.get(2));
     }
+
+    @Test
+    public void givenListWithElements_whenReverse_thenOrderIsReversed() {
+        DoubleLinkedList list = new DoubleLinkedList();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+
+        list.reverse();
+
+        assertEquals(3, list.get(0));
+        assertEquals(2, list.get(1));
+        assertEquals(1, list.get(2));
+    }
 }
